@@ -34,7 +34,7 @@ const convert = configuration => {
   process.exit(1);
 };
 
-const cash = async command => {
+  const cash = async command => {
   const amount = command.amount;
   const from = command.from.toUpperCase();
   const to = command.to

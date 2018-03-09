@@ -13,10 +13,10 @@
 ```
 const btcConvert = require('./index');    
 const coins = btcConvert(4.6, 'Satoshi', 'BTC');  
-
 console.log(coins);
+
 ```
-    
+
 ## API
 
 ### btcConvert (from, fromUnit, toUnit, [representation])
