@@ -33,7 +33,8 @@ node bin/index.js 33 CAD
 ## Commands
 
 ### -h (--help)
-Display help message
+Display  the help message shows all the commands that you can use and all how to use it 
+
 
 
 ### -s (--save)
