@@ -2,67 +2,70 @@
 
 ## Features
 
-- Avoids rounding errors by using a [big number](https://www.npmjs.com/package/big.js) package
-- Converts from/to a [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number),
-  [Big](https://www.npmjs.com/package/big.js) or
-  [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-- Units can be added or removed
+- Convert initially cash in USD  into several currencies (EUR , GBP)
+- Can change the inatially curency
+- Can change the currency in witch the cash is change
+
+
 
 ## Getting started
 
-```
-const btcConvert = require('./index');    
-const coins = btcConvert(4.6, 'Satoshi', 'BTC');  
-console.log(coins);
+Converts an amount from one currency list un the devices currency into several other ones [EUR,GBP].
 
 ```
+node bin/index.js <amount> <currency>
 
-## API
+```
+###Exemple
 
-### btcConvert (from, fromUnit, toUnit, [representation])
+```
 
-Converts an amount from one unit to another unit.
+node bin/index.js 33 CAD
 
-- `from` (number | string | [Big](https://www.npmjs.com/package/big.js)) - the amount to convert
-- `fromUnit` (string) - the unit of the amount
-- `toUnit` (string) - the unit to convert to
-- `representation` (string) - the type of value to return, defaults to 'Number'.
-   - 'Number' - returns a standard javascript [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
-   -  'Big' - returns a [Big](https://www.npmjs.com/package/big.js) number
-   -  'String' - returns a [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+√ 25.59 (USD) US Dollar
+√ 20.82 (EUR) Euro
+√ 18.51 (GBP) Pound Sterling
 
-#### Examples
+```
 
-    btcConvert(2, 'BTC', 'bit') // returns 2000000
-    btcConvert(2, 'BTC', 'bit', 'String') // returns '2000000'
 
-### btcConvert.units()
 
-Returns an Array of unit symbols that can be used for conversion.
+## Commands
 
-#### Example
+### -h (--help)
+Display help message
 
-    console.log(btcConvert.units())
-    // produces
-    // ['BTC', 'mBTC', 'μBTC', 'bit', 'Satoshi', 'sat']
 
-### btcConvert.addUnit (unit, factor)
-
-Adds a new `unit` for conversion.  Throws when `unit` already exists and the factors are different.
-
-- `unit` (string) - the new unit symbol
-- `factor` (number | string | Big) - conversion factor to yield a `BTC`.
+### -s (--save)
+Save currencies as default currencies
 
 #### Example
+Before using the --save Command
+The cash is initially in USD and convert in Euro and Pound Sterling
+```
+node bin/index.js 33
 
-    convert.addUnit('finney', 0.0000001);
-    convert(30, 'finney', 'BTC') // produces 0.000003
+√ 26.85 (EUR) Euro
+√ 23.87 (GBP) Pound Sterling
 
-    // 10 satoshis can be expressed as 1 finney
-    convert(20, 'Satoshi', 'finney') // produces 2
 
-### btcConvert.removeUnit (unit)
+```
+Using the --save command
 
-Removes the `unit` from conversion.  Throws when `unit` is pre-defined. Removing a non-existing symbol is allowed.
+```
+node bin/index.js --save eur
+Saved default currencies to C:\Users\Carel\AppData\Local\cash-nodejs\Config\config.json
 
-- `unit` (string) - the unit symbol to remove.
+node bin/index.js 33
+
+√ 40.56 (USD) US Dollar
+√ 29.33 (GBP) Pound Sterling
+
+ Conversion of EUR 33
+
+```
+'
+
+
+### -v (--version)
+Display version number
